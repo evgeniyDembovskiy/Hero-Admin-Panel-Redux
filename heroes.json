@@ -1,23 +1,35 @@
 {
   "heroes": [
     {
-      "id": 1,
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
-      "element": "fire"
+      "name": "Fire",
+      "description": "Fire",
+      "element": "Fire",
+      "id": "130e7b9a-31c7-4674-b575-00141c3684b7"
     },
     {
-      "id": 3,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
+      "name": "Water",
+      "description": "Water",
+      "element": "Water",
+      "id": "e2b8437d-b4e5-4e60-8cbb-2b2caa8916fd"
+    },
+    {
+      "name": "Wind",
+      "description": "Wind",
+      "element": "Wind",
+      "id": "0c438ca7-153d-470a-8548-5f8138d33a6f"
+    },
+    {
+      "name": "Earth",
+      "description": "Earth",
+      "element": "Earth",
+      "id": "5eb6b761-1ecf-42b2-a96c-58b3670fde07"
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
+    "All",
+    "Fire",
+    "Water",
+    "Wind",
+    "Earth"
   ]
 }

@@ -1,5 +1,6 @@
+import { useMemo } from "react";
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as createId } from 'uuid';
 import { heroCreate } from "../../actions";
 import { useHttp } from './../../hooks/http.hook';
@@ -29,19 +30,25 @@ const HeroesAddForm = () => {
         setElement("");
     }
 
+    const createElementOptions = (filters) => filters.filter(item => item !== "All").map(item => <option key={item} value={item}>{item}</option>); // Убираем опцию "All" и возвращаем jsx оставшихся опций
+    
+
+    const filters = useSelector(state => state.filters);
+    const elementOptions = useMemo(() => createElementOptions(filters), [filters]);
+
     return (
         <form 
             className="border p-4 shadow-lg rounded"
             onSubmit={createHero}>
             <div className="mb-3">
-                <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
+                <label htmlFor="name" className="form-label fs-4">Name of the new hero</label>
                 <input 
                     required
                     type="text" 
                     name="name" 
                     className="form-control" 
                     id="name" 
-                    placeholder="Как меня зовут?"
+                    placeholder="Name is..."
                     value={name}
                     onChange={(e) => {
                         setName(e.target.value);
@@ -49,13 +56,13 @@ const HeroesAddForm = () => {
             </div>
 
             <div className="mb-3">
-                <label htmlFor="text" className="form-label fs-4">Описание</label>
+                <label htmlFor="text" className="form-label fs-4">Description</label>
                 <textarea
                     required
                     name="text" 
                     className="form-control" 
                     id="text" 
-                    placeholder="Что я умею?"
+                    placeholder="What kind of abilities do I have?"
                     style={{"height": '130px'}}
                     value={text}
                     onChange={(e) => {
@@ -64,7 +71,7 @@ const HeroesAddForm = () => {
             </div>
 
             <div className="mb-3">
-                <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
+                <label htmlFor="element" className="form-label">Select hero element</label>
                 <select 
                     required
                     className="form-select" 
@@ -74,15 +81,16 @@ const HeroesAddForm = () => {
                     onChange={(e) => {
                         setElement(e.target.value);
                     }}>
-                    <option disabled value="">Я владею элементом...</option>
-                    <option value="fire">Огонь</option>
-                    <option value="water">Вода</option>
-                    <option value="wind">Ветер</option>
-                    <option value="earth">Земля</option>
+                    <option disabled value="">Element...</option>
+                    {elementOptions}
+                    {/* <option value="fire">Fire</option>
+                    <option value="water">Water</option>
+                    <option value="wind">Wind</option>
+                    <option value="earth">Earth</option> */}
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary">Создать</button>
+            <button type="submit" className="btn btn-primary">Create</button>
         </form>
     )
 }

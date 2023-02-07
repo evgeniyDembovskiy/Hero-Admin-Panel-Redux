@@ -30,3 +30,17 @@ export const heroDelete = (id) => {
         payload: id,
     }
 }
+
+export const createFilters = (filters) => {
+    return {
+        type: 'FILTERS_CREATE',
+        payload: filters,
+    }
+}
+
+export const activeFilterUpdate = (filter) => {
+    return {
+        type: 'ACTIVE_FILTER_UPDATE',
+        payload: filter,
+    }
+}
