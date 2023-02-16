@@ -1,12 +1,6 @@
 {
   "heroes": [
     {
-      "name": "Fire",
-      "description": "Fire",
-      "element": "Fire",
-      "id": "130e7b9a-31c7-4674-b575-00141c3684b7"
-    },
-    {
       "name": "Water",
       "description": "Water",
       "element": "Water",
@@ -23,6 +17,12 @@
       "description": "Earth",
       "element": "Earth",
       "id": "5eb6b761-1ecf-42b2-a96c-58b3670fde07"
+    },
+    {
+      "name": "Fire",
+      "description": "Fire",
+      "element": "Fire",
+      "id": "605b513a-1c90-4ab9-93a9-b53f57d42265"
     }
   ],
   "filters": [

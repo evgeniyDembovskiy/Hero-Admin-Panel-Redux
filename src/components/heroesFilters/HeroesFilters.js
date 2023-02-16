@@ -5,6 +5,8 @@ import { useHttp } from './../../hooks/http.hook';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { activeFilterUpdate } from './../../actions/index';
+import { createSelector } from 'reselect';
+
 
 const HeroesFilters = () => {
     const [activeFilter, setActiveFilter] = useState("All");
@@ -21,7 +23,7 @@ const HeroesFilters = () => {
         dispatch(activeFilterUpdate(filter));
     }
 
-    const filters = useSelector(state => state.filters);
+    const filters = useSelector(state => state.filters.filters);
     const createElementButtons = (filters) => {
         return filters.map(item => {
             let btnClasses = {

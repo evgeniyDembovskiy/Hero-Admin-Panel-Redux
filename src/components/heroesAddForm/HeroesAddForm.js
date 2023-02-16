@@ -24,6 +24,7 @@ const HeroesAddForm = () => {
             id: createId(),
         }
         dispatch(heroCreate(hero));
+
         request("http://localhost:3001/heroes", "POST", JSON.stringify(hero));
         setName("");
         setText("");
@@ -33,7 +34,7 @@ const HeroesAddForm = () => {
     const createElementOptions = (filters) => filters.filter(item => item !== "All").map(item => <option key={item} value={item}>{item}</option>); // Убираем опцию "All" и возвращаем jsx оставшихся опций
     
 
-    const filters = useSelector(state => state.filters);
+    const filters = useSelector(state => state.filters.filters);
     const elementOptions = useMemo(() => createElementOptions(filters), [filters]);
 
     return (
