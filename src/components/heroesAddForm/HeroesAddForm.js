@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as createId } from 'uuid';
-import { heroCreate } from "../../actions";
+import { heroCreate } from "../heroesList/heroesSlice";
 import { useHttp } from './../../hooks/http.hook';
 
 

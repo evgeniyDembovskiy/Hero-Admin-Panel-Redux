@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createFilters } from '../../actions';
 import { useHttp } from './../../hooks/http.hook';
 import { useState } from 'react';
 import classNames from 'classnames';
-import { activeFilterUpdate } from './../../actions/index';
-import { createSelector } from 'reselect';
+import { activeFilterUpdate, createFilters } from './FiltersSlice';
 
 
 const HeroesFilters = () => {
@@ -14,7 +12,9 @@ const HeroesFilters = () => {
     const {request} = useHttp();
     useEffect(() => {
         request("http://localhost:3001/filters")
-            .then(filters => dispatch(createFilters(filters)))
+            .then(filters => {
+                dispatch(createFilters(filters))
+            })
     }, [])
 
 

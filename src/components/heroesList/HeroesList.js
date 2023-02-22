@@ -2,24 +2,22 @@ import {useHttp} from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { heroesFetching, heroesFetched, heroesFetchingError } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
-
+import { fetchHeroes, selectAll } from './heroesSlice';
+import store from './../../store/index';
 
 const HeroesList = () => {
-    const {heroes, heroesLoadingStatus} = useSelector(state => state.heroes);
+    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus);
     const dispatch = useDispatch();
     const {request} = useHttp();
 
     const filter = useSelector(state => state.filters.activeFilter);
 
-    useEffect(() => {
-        dispatch(heroesFetching());
-        request("http://localhost:3001/heroes")
-            .then(data => dispatch(heroesFetched(data)))
-            .catch(() => dispatch(heroesFetchingError()))
 
+    useEffect(() => {
+        console.log(store.getState());
+        dispatch(fetchHeroes());
         // eslint-disable-next-line
     }, []);
 
@@ -42,6 +40,8 @@ const HeroesList = () => {
         })
     }
 
+    // const heroes = heroesAdapter.getSelectors().selectAll(store.getState().heroes);
+    const heroes = selectAll(store.getState().heroes);
     const elements = renderHeroesList(heroes);
     return (
         <ul>
